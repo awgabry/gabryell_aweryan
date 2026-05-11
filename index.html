@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Literário | Gabriel Aquino</title>
+    <style>
+        :root {
+            --bg-color: #f4f1ea;
+            --text-color: #2c2c2c;
+            --accent-color: #4a5d4e;
+            --card-bg: #ffffff;
+            --sidebar-bg: #e9e5d8;
+            --unavailable-color: #a60303;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Menu Lateral */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-right: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .nav-card {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-card:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.02);
+        }
+
+        .nav-card i {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: normal;
+            margin-top: 5px;
+            opacity: 0.8;
+            line-height: 1.3;
+        }
+
+        /* Área Principal */
+        main {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Seção da Biografia no Topo */
+        .top-bio {
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .author-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 20px;
+            background-color: #ccc;
+        }
+
+        .top-bio p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #444;
+            font-style: italic;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            display: inline-block;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        header p {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 900px;
+        }
+
+        .book-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 280px;
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 380px;
+            background-color: #ddd;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        .btn-redirect {
+            display: inline-block;
+            background-color: var(--unavailable-color);
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: sans-serif;
+            font-size: 0.85rem;
+            width: 80%;
+            font-weight: bold;
+            cursor: not-allowed;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            .sidebar { width: auto; height: auto; position: static; border-right: none; }
+            .top-bio { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h3 style="text-align: center; font-size: 1.2rem;">Categorias</h3>
+        
+        <a href="#novels-section" class="nav-card">
+            Novels
+            <i>Histórias curtas de outras óticas, ou sagas.</i>
+        </a>
+
+        <a href="#contos-section" class="nav-card">
+            Contos
+            <i>Histórias Curtas e originais, podendo fazer ou não parte de um universo já existente.</i>
+        </a>
+    </aside>
+
+    <main>
+        <section class="top-bio">
+            <img src="sua-foto.jpg" alt="Gabriel Aquino" class="author-photo">
+            <p>
+                Triohnte teve um início humilde, num momento épico da história de seu autor. Aquino nunca pôde ser uma "pessoa normal", momentos de maior conexão com a realidade social eram abafados por batalhas judiciais. Incentivado pelo amigo Pedro Raphael aos 17 anos, Gabriel decidiu escrever um breve conto em seu quarto escuro que tomou forma para o Triohnte que conhecemos, após um processo de reedição que já atravessa 7 anos de dedicação constante.
+            </p>
+        </section>
+
+        <header>
+            <h1>Minhas Obras</h1>
+            <p>Conheça a construção de meu legado literário</p>
+        </header>
+
+        <div class="container" id="novels-section">
+            <div class="book-card">
+                <img src="capa-triohnte.jpg" alt="Capa Triohnte" class="book-cover">
+                <h3>Triohnte</h3>
+                <span class="btn-redirect">Indisponível</span>
+            </div>
+
+            <div class="book-card">
+                <img src="capa-moncao-verde.jpg" alt="Capa Monção Verde" class="book-cover">
+                <h3>Monção Verde</h3>
+                <span class="btn-redirect">Indisponível</span>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
