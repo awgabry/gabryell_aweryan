@@ -26,46 +26,89 @@
             color: var(--text-color);
             margin: 0;
             display: flex;
+            flex-direction: column; /* Alterado para empilhar o menu superior e o conteúdo */
             min-height: 100vh;
         }
 
-        /* Menu Lateral */
-        .sidebar {
-            width: 280px;
+        /* Menu Superior com Dropdown */
+        .top-navbar {
             background-color: var(--sidebar-bg);
-            padding: 40px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 15px 40px;
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-            border-right: 1px solid rgba(255,255,255,0.05);
+            justify-content: center;
             position: sticky;
             top: 0;
-            height: 100vh;
+            z-index: 1000;
         }
 
-        .nav-card {
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
             background: var(--card-bg);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            text-decoration: none;
             color: var(--text-color);
-            /* 'Cinzel' traz a estética de monumentos e livros antigos para os links */
+            padding: 12px 30px;
+            border: 2px solid transparent;
+            border-radius: 8px;
             font-family: 'Cinzel', serif;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
-            letter-spacing: 0.5px;
         }
 
-        .nav-card:hover {
+        .dropdown:hover .dropdown-btn {
             border-color: var(--accent-color);
             transform: scale(1.02);
         }
 
-        .nav-card i {
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--sidebar-bg);
+            min-width: 280px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            margin-top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-link {
+            display: flex;
+            flex-direction: column;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-link:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-link:hover {
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+        }
+
+        .dropdown-link i {
             display: block;
             font-family: 'Lora', serif;
             font-size: 0.75rem;
@@ -74,6 +117,7 @@
             opacity: 0.7;
             line-height: 1.4;
             letter-spacing: 0;
+            color: var(--text-color);
         }
 
         /* Área Principal */
@@ -141,6 +185,7 @@
             flex-wrap: wrap;
             justify-content: center;
             max-width: 900px;
+            margin-bottom: 50px; /* Margem interna para separar as seções */
         }
 
         .book-card {
@@ -185,37 +230,43 @@
         }
 
         @media (max-width: 900px) {
-            body { flex-direction: column; }
-            .sidebar { width: auto; height: auto; position: static; border-right: none; }
             .top-bio { width: 90%; }
+            .top-navbar { padding: 15px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
-        <h3 style="text-align: center; font-size: 1.2rem; font-family: 'Cinzel', serif; letter-spacing: 1px; margin-top: 0;">Categorias</h3>
-        
-        <a href="#novels-section" class="nav-card">
-            Novels
-            <i>Histórias curtas de outras óticas, ou sagas.</i>
-        </a>
-
-        <a href="#contos-section" class="nav-card">
-            Contos
-            <i>Histórias Curtas e originais, podendo fazer ou não parte de um universo já existente.</i>
-        </a>
-    </aside>
+    <!-- Menu Superior com Dropdown Centralizado -->
+    <nav class="top-navbar">
+        <div class="dropdown">
+            <button class="dropdown-btn">Navegar pelo Catálogo</button>
+            <div class="dropdown-content">
+                <a href="#romances-section" class="dropdown-link">
+                    Romances
+                    <i>Grandes volumes, tramas densas e universos expandidos.</i>
+                </a>
+                <a href="#novels-section" class="dropdown-link">
+                    Novels
+                    <i>Histórias curtas de outras óticas, ou sagas.</i>
+                </a>
+                <a href="#autoridade-section" class="dropdown-link">
+                    Autoridade
+                    <i>Artigos, ensaios e a construção do legado literário.</i>
+                </a>
+            </div>
+        </div>
+    </nav>
 
     <main>
-        <section class="top-bio">
+        <section class="top-bio" id="autoridade-section">
             <img src="gb.jpg" alt="Gabriel Aquino" class="author-photo">
             <p>
                 Gabriel Aquino, que assina sob o pseudônimo de Gabryell Aweryan, é um escritor de fantasia e autor da obra Trionte: O Segredo do Império, publicada em 12 de dezembro de 2021, um marco alcançado graças ao apoio fundamental de seu pai e de sua avó, que acreditaram desde o início em seu potencial criativo.
-
-Entre suas principais realizações no meio literário, destacam-se a fundação da Editora Gravura e a criação da extinta Ordem dos Errantes do Tinteiro; iniciativas que, hoje, transformaram-se em memórias douradas e pilares essenciais de sua bagagem e experiência.
-
-Gabriel chegou a cursar Medicina até o quinto período, mas, por razões de saúde e limitações financeiras, optou por interromper a graduação. Atualmente, reside na Europa, onde concilia uma rotina dinâmica em Portugal com uma vida reservada e distante das redes sociais, mantendo o firme propósito de consolidar sua carreira literária e alcançar seu espaço de autoridade no gênero.
+                <br><br>
+                Entre suas principais realizações no meio literário, destacam-se a fundação da Editora Gravura e a criação da extinta Ordem dos Errantes do Tinteiro; iniciativas que, hoje, transformaram-se em memórias douradas e pilares essenciais de sua bagagem e experiência.
+                <br><br>
+                Gabriel chegou a cursar Medicina até o quinto período, mas, por razões de saúde e limitações financeiras, optou por interromper a graduação. Atualmente, reside na Europa, onde concilia uma rotina dinâmica em Portugal com uma vida reservada e distante das redes sociais, mantendo o firme propósito de consolidar sua carreira literária e alcançar seu espaço de autoridade no gênero.
             </p>
         </section>
 
@@ -223,6 +274,11 @@ Gabriel chegou a cursar Medicina até o quinto período, mas, por razões de sa�
             <h1>Minhas Obras</h1>
             <p>Conheça a construção de meu legado literário</p>
         </header>
+
+        <!-- Seção de Romances (Exemplo de posicionamento para o link) -->
+        <div class="container" id="romances-section">
+            <!-- Caso queira mover livros longos para cá futuramente -->
+        </div>
 
         <div class="container" id="novels-section">
             <div class="book-card">
